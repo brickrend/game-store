@@ -1,23 +1,12 @@
-import logo from './logo.svg';
+
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1 className="text">Game Store</h1>
+      <h2 className="text">Made by gamers for gamers</h2>
+      <img id="image-s" src ="https://tessla.org/wp-content/uploads/2017/06/db3c6932ab7f48aa37911fa229efa7ba-2.jpg"/>
     </div>
   );
 }
