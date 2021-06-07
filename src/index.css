@@ -13,8 +13,8 @@ code {
 }
 
 .text{
-  background-color: black;
   margin: auto;
+  background-color: black;
   text-align: center;
   color: rgb(32, 244, 252);
 }
@@ -24,4 +24,19 @@ code {
   margin-right: auto;
   margin-left: auto;
   width: 50%;
+}
+
+.image-List{
+  width: 300px;
+  height: 300px;
+}
+
+.game-margin{
+  margin: 23px;
+}
+
+.list {
+  display: flex; /* allows us to use Flexbox */
+  align-items: center;
+  justify-content: center;
 }
