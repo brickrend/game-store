@@ -1,25 +1,69 @@
-import './products'
-import './App.css';
-import games from './products';
+import games from "./products";
+import "./App.css";
 
-const gamesList = games.map((game) => 
-  <div className ="game-margin" key= {game.id}>
-    <img className = "image-List" src = {game.image}/>
-    <p className = "text">{game.name}</p>
-    <p className = "text">{game.price}</p>
-  </div>
-)
+// components
+import HomePage from "./components/Home";
+import ProductList from "./components/ProductList";
+import ProductDetail from "./components/ProductDetail";
+
+// styles
+import {
+  GlobalStyle,
+  Title,
+  Description,
+  ShopImage,
+  productWrapper,
+  ThemeButton,
+} from "./styles";
+import { ThemeProvider } from "styled-components";
+
+// useState
+import { useState } from "react";
+
+const theme = {
+  light: {
+    mainColor: "#20f4fc",
+    backgroundColor: "gray",
+    textBackgroundColor: "black",
+  },
+
+  dark: {
+    mainColor: "#20f4fc",
+    backgroundColor: "black",
+    textBackgroundColor: "gray",
+  },
+};
 
 function App() {
+  const [currentTheme, setcurrentTheme] = useState("light");
+  const [product, setProduct] = useState(null);
+
+  const changeTheme = () => {
+    if (currentTheme === "light") {
+      setcurrentTheme("dark");
+    } else {
+      setcurrentTheme("light");
+    }
+  };
+
+  const viewProduct = () => {
+    if (product) {
+      return <ProductDetail Product={product} />;
+    } else {
+      return <ProductList setProduct={setProduct} />;
+    }
+  };
+
   return (
     <div>
-      <h1 className="text">Game Store</h1>
-      <h2 className="text">Made by gamers for gamers</h2>
-      <img id="image-s" src ="https://tessla.org/wp-content/uploads/2017/06/db3c6932ab7f48aa37911fa229efa7ba-2.jpg"/>
-
-      <div className ="list">
-          {gamesList}
-      </div>
+      <ThemeProvider theme={theme[currentTheme]}>
+        <ThemeButton onClick={changeTheme}>
+          {currentTheme === "light" ? "Dark" : "Light"}
+        </ThemeButton>
+        <GlobalStyle />
+        <HomePage />
+        <div>{viewProduct()}</div>
+      </ThemeProvider>
     </div>
   );
 }

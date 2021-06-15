@@ -1,17 +1,38 @@
 const games = [
-    {
-        id: 1,
-        name: "returnal",
-        price: 20,
-        image: "https://upload.wikimedia.org/wikipedia/en/9/91/Returnal_cover_art.jpg",
-    },
+  {
+    id: 1,
+    name: "returnal",
+    discription: "A game about a timeloop",
+    price: 20,
+    image:
+      "https://upload.wikimedia.org/wikipedia/en/9/91/Returnal_cover_art.jpg",
+  },
 
-    {
-        id : 2,
-        name: "Skyrim",
-        price: 15,
-        image: "https://www.digiseller.ru/preview/89827/p1_1210701_a1b136da.jpeg",
-    }
-]
+  {
+    id: 2,
+    name: "Skyrim",
+    discription: "You save the world from ending",
+    price: 15,
+    image: "https://www.digiseller.ru/preview/89827/p1_1210701_a1b136da.jpeg",
+  },
 
-export default games
+  {
+    id: 3,
+    name: "Demon Souls",
+    discription: "You slay demons",
+    price: 17,
+    image:
+      "https://www.psu.com/wp/wp-content/uploads/2020/06/Demons-souls-remake-news-reviews-videos-1.jpg",
+  },
+
+  {
+    id: 4,
+    name: "WarZone",
+    discription: "Battel royal",
+    price: 15,
+    image:
+      "https://www.videogameschronicle.com/files/2020/06/Call-of-Duty-Warzone-aa.jpg",
+  },
+];
+
+export default games;
