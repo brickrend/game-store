@@ -42,7 +42,7 @@ export const ProductWrapper = styled.div`
   }
   p {
     margin: 0 80.1% 0 0;
-    background-color: black;
+    ${"" /* background-color: black; */}
     text-align: left;
     color: ${(prop) => prop.theme.mainColor};
 
@@ -87,4 +87,8 @@ export const SearchBarComp = styled.input`
   margin: 10px auto;
   display: block;
   width: 40%;
+`;
+
+export const DeleteButtonComp = styled.p`
+  color: ${(prop) => prop.theme.deleteButton};
 `;

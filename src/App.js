@@ -7,14 +7,7 @@ import ProductList from "./components/ProductList";
 import ProductDetail from "./components/ProductDetail";
 
 // styles
-import {
-  GlobalStyle,
-  Title,
-  Description,
-  ShopImage,
-  productWrapper,
-  ThemeButton,
-} from "./styles";
+import { GlobalStyle, ThemeButton } from "./styles";
 import { ThemeProvider } from "styled-components";
 
 // useState
@@ -25,18 +18,21 @@ const theme = {
     mainColor: "#20f4fc",
     backgroundColor: "gray",
     textBackgroundColor: "black",
+    deleteButton: "red",
   },
 
   dark: {
     mainColor: "#20f4fc",
     backgroundColor: "black",
     textBackgroundColor: "gray",
+    deleteButton: "red",
   },
 };
 
 function App() {
   const [currentTheme, setcurrentTheme] = useState("light");
   const [product, setProduct] = useState(null);
+  const [_products, setProducts] = useState(games);
 
   const changeTheme = () => {
     if (currentTheme === "light") {
@@ -46,11 +42,28 @@ function App() {
     }
   };
 
+  const DeleteProduct = (productId) => {
+    const updateProducts = _products.filter((game) => game.id !== productId);
+    setProducts(updateProducts);
+  };
+
   const viewProduct = () => {
     if (product) {
-      return <ProductDetail Product={product} />;
+      return (
+        <ProductDetail
+          product={product}
+          setProduct={setProduct}
+          DeleteProduct={DeleteProduct}
+        />
+      );
     } else {
-      return <ProductList setProduct={setProduct} />;
+      return (
+        <ProductList
+          setProduct={setProduct}
+          products={_products}
+          DeleteProduct={DeleteProduct}
+        />
+      );
     }
   };
 
