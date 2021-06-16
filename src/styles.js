@@ -41,7 +41,7 @@ export const ProductWrapper = styled.div`
     height: 300px;
   }
   p {
-    margin: auto;
+    margin: 0 80.1% 0 0;
     background-color: black;
     text-align: left;
     color: ${(prop) => prop.theme.mainColor};
@@ -80,4 +80,11 @@ export const DetailWrapper = styled.div`
   p {
     vertical-align: middle;
   }
+`;
+
+export const SearchBarComp = styled.input`
+  border: solid;
+  margin: 10px auto;
+  display: block;
+  width: 40%;
 `;
