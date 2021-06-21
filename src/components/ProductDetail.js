@@ -11,7 +11,7 @@ const ProductDetail = (props) => {
       <DeleteButton
         DeleteProduct={props.DeleteProduct}
         productId={props.product.id}
-        setProduct={props.setProduct}
+        // setProduct={props.setProduct}
       ></DeleteButton>
     </DetailWrapper>
   );

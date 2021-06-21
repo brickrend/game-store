@@ -17,7 +17,7 @@ const ProductList = (props) => {
       <ProductItem
         game={game}
         key={game.id}
-        setProduct={props.setProduct}
+        // setProduct={props.setProduct}
         DeleteProduct={props.DeleteProduct}
       />
     ));

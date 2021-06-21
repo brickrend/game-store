@@ -1,10 +1,25 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export const GlobalStyle = createGlobalStyle`
 body{
     background-color:${(prop) => prop.theme.backgroundColor};
     color :${(prop) => prop.theme.mainColor};
 }
+`;
+
+export const NavProduct = styled(NavLink)`
+  color: ${(prop) => prop.theme.mainColor};
+  float: right;
+  margin-bottom: 200px;
+  padding: 5px;
+  &.active {
+    color: ${(prop) => prop.theme.mainColor};
+  }
+`;
+
+export const LogoImg = styled(NavLink)`
+  padding: 10px;
 `;
 
 export const Title = styled.h1`

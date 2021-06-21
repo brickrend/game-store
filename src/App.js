@@ -5,13 +5,17 @@ import "./App.css";
 import HomePage from "./components/Home";
 import ProductList from "./components/ProductList";
 import ProductDetail from "./components/ProductDetail";
+import Logo from "./Logo.png";
+import NavBar from "./components/NavBar";
 
 // styles
-import { GlobalStyle, ThemeButton } from "./styles";
+import { GlobalStyle, ThemeButton, NavProduct, LogoImg } from "./styles";
 import { ThemeProvider } from "styled-components";
 
 // useState
 import { useState } from "react";
+import { Route, Switch } from "react-router";
+import { Link } from "react-router-dom";
 
 const theme = {
   light: {
@@ -31,7 +35,7 @@ const theme = {
 
 function App() {
   const [currentTheme, setcurrentTheme] = useState("light");
-  const [product, setProduct] = useState(null);
+  // const [product, setProduct] = useState(null);
   const [_products, setProducts] = useState(games);
 
   const changeTheme = () => {
@@ -47,35 +51,24 @@ function App() {
     setProducts(updateProducts);
   };
 
-  const viewProduct = () => {
-    if (product) {
-      return (
-        <ProductDetail
-          product={product}
-          setProduct={setProduct}
-          DeleteProduct={DeleteProduct}
-        />
-      );
-    } else {
-      return (
-        <ProductList
-          setProduct={setProduct}
-          products={_products}
-          DeleteProduct={DeleteProduct}
-        />
-      );
-    }
-  };
-
   return (
     <div>
       <ThemeProvider theme={theme[currentTheme]}>
         <ThemeButton onClick={changeTheme}>
           {currentTheme === "light" ? "Dark" : "Light"}
         </ThemeButton>
+        <Switch>
+          <Route exact path="/">
+            <HomePage />
+            <NavBar to="/product" className="active">
+              Games
+            </NavBar>
+          </Route>
+          <Route exact path="/product">
+            <ProductList products={_products} DeleteProduct={DeleteProduct} />
+          </Route>
+        </Switch>
         <GlobalStyle />
-        <HomePage />
-        <div>{viewProduct()}</div>
       </ThemeProvider>
     </div>
   );
