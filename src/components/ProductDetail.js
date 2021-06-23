@@ -1,16 +1,22 @@
 import { DetailWrapper } from "../styles";
 import DeleteButton from "./buttons/DeleteButton";
+import { useParams } from "react-router-dom";
 
 const ProductDetail = (props) => {
+  const productSlug = useParams().productSlug;
+  const product1 = props.products.find(
+    (product) => product.lug === productSlug
+  );
+
   return (
     <DetailWrapper>
-      <img src={props.product.image} alt={props.product.name} />
-      <p>{props.product.name}</p>
-      <p>{props.product.discription}</p>
-      <p>{props.product.price}</p>
+      <img src={product1.image} alt={product1.name} />
+      <p>{product1.name}</p>
+      <p>{product1.discription}</p>
+      <p>{product1.price}</p>
       <DeleteButton
         DeleteProduct={props.DeleteProduct}
-        productId={props.product.id}
+        productId={product1.id}
         // setProduct={props.setProduct}
       ></DeleteButton>
     </DetailWrapper>

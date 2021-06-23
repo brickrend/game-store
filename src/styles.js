@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 export const GlobalStyle = createGlobalStyle`
 body{
@@ -11,7 +11,6 @@ body{
 export const NavProduct = styled(NavLink)`
   color: ${(prop) => prop.theme.mainColor};
   float: right;
-  margin-bottom: 200px;
   padding: 5px;
   &.active {
     color: ${(prop) => prop.theme.mainColor};
@@ -20,6 +19,9 @@ export const NavProduct = styled(NavLink)`
 
 export const LogoImg = styled(NavLink)`
   padding: 10px;
+  img {
+    width: 8rem;
+  }
 `;
 
 export const Title = styled.h1`
@@ -68,16 +70,9 @@ export const ProductWrapper = styled.div`
 `;
 
 export const ThemeButton = styled.button`
-  ${
-    "" /* width: 5%;
-  height: 50%; */
-  }
   font-size: 1em;
-  borfer-redius: 3px;
-  ${"" /* border-color : ${(prop) => prop.theme.backgroundColor}; */}
-  padding: 15px;
-  margin: 10px;
-  width: 10%;
+  padding: 0.25em 1em;
+  border-radius: 3px;
   background-color: ${(prop) => prop.theme.textBackgroundColor};
   color: ${(prop) => prop.theme.backgroundColor};
 `;

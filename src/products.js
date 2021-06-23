@@ -1,7 +1,8 @@
 const games = [
   {
     id: 1,
-    name: "returnal",
+    slug: "returnal",
+    name: "Returnal",
     discription: "A game about a timeloop",
     price: 20,
     image:
@@ -10,6 +11,7 @@ const games = [
 
   {
     id: 2,
+    slug: "skyrim",
     name: "Skyrim",
     discription: "You save the world from ending",
     price: 15,
@@ -18,6 +20,7 @@ const games = [
 
   {
     id: 3,
+    slug: "demon-souls",
     name: "Demon Souls",
     discription: "You slay demons",
     price: 17,
@@ -27,6 +30,7 @@ const games = [
 
   {
     id: 4,
+    slug: "warzone",
     name: "WarZone",
     discription: "Battel royal",
     price: 15,

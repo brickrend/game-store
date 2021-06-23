@@ -54,18 +54,18 @@ function App() {
   return (
     <div>
       <ThemeProvider theme={theme[currentTheme]}>
-        <ThemeButton onClick={changeTheme}>
-          {currentTheme === "light" ? "Dark" : "Light"}
-        </ThemeButton>
+        <NavBar currentTheme={currentTheme} changeTheme={changeTheme}>
+          Games
+        </NavBar>
         <Switch>
-          <Route exact path="/">
-            <HomePage />
-            <NavBar to="/product" className="active">
-              Games
-            </NavBar>
-          </Route>
           <Route exact path="/product">
             <ProductList products={_products} DeleteProduct={DeleteProduct} />
+          </Route>
+          <Route exact path="/product/:productId">
+            <ProductDetail products={_products} DeleteProduct={DeleteProduct} />
+          </Route>
+          <Route exact path="/">
+            <HomePage />
           </Route>
         </Switch>
         <GlobalStyle />

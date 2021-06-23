@@ -1,14 +1,17 @@
 import { ProductWrapper } from "../styles";
 import DeleteButton from "./buttons/DeleteButton";
+import { Link } from "react-router-dom";
 
 const ProductItem = (props) => {
   return (
     <ProductWrapper>
-      <img
-        src={props.game.image}
-        alt=""
-        // onClick={() => props.setProduct(props.game)}
-      />
+      <Link to={`/product/${props.game.id}`}>
+        <img
+          src={props.game.image}
+          alt=""
+          //  onClick={() => props.setProduct(props.game)}
+        />
+      </Link>
       <p>{props.game.name}</p>
       <p className="game-price">{props.game.price}</p>
       <DeleteButton
