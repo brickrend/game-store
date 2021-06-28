@@ -1,11 +1,34 @@
 import styled, { createGlobalStyle } from "styled-components";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { TiPlusOutline } from "react-icons/ti";
 
 export const GlobalStyle = createGlobalStyle`
 body{
     background-color:${(prop) => prop.theme.backgroundColor};
     color :${(prop) => prop.theme.mainColor};
 }
+`;
+
+export const AddBtnStyled = styled.button`
+  width: 60px;
+  height: 30px;
+  ${"" /* padding: 0.25em 1em; */}
+  ${"" /* border-radius: 5px; */}
+  ${"" /* background-color: black; */}
+  color: black;
+`;
+
+export const AddProductIcon = styled(TiPlusOutline)`
+  color: white;
+  font-size: 30px;
+  margin: 30px 0px 0px 12em;
+  border-style: solid;
+  border-radius: 50%;
+  background-color: black;
+
+  &.active:hover {
+    color: rgb(192, 201, 204);
+  }
 `;
 
 export const NavProduct = styled(NavLink)`

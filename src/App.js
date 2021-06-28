@@ -1,21 +1,20 @@
-import games from "./products";
 import "./App.css";
 
 // components
 import HomePage from "./components/Home";
 import ProductList from "./components/ProductList";
 import ProductDetail from "./components/ProductDetail";
-import Logo from "./Logo.png";
+// import Logo from "./Logo.png";
 import NavBar from "./components/NavBar";
 
 // styles
-import { GlobalStyle, ThemeButton, NavProduct, LogoImg } from "./styles";
+import { GlobalStyle } from "./styles";
 import { ThemeProvider } from "styled-components";
 
 // useState
 import { useState } from "react";
 import { Route, Switch } from "react-router";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const theme = {
   light: {
@@ -36,7 +35,6 @@ const theme = {
 function App() {
   const [currentTheme, setcurrentTheme] = useState("light");
   // const [product, setProduct] = useState(null);
-  const [_products, setProducts] = useState(games);
 
   const changeTheme = () => {
     if (currentTheme === "light") {
@@ -46,10 +44,10 @@ function App() {
     }
   };
 
-  const DeleteProduct = (productId) => {
-    const updateProducts = _products.filter((game) => game.id !== productId);
-    setProducts(updateProducts);
-  };
+  // const DeleteProduct = (productId) => {
+  //   const updateProducts = _products.filter((game) => game.id !== productId);
+  //   setProducts(updateProducts);
+  // };
 
   return (
     <div>
@@ -59,10 +57,10 @@ function App() {
         </NavBar>
         <Switch>
           <Route exact path="/product">
-            <ProductList products={_products} DeleteProduct={DeleteProduct} />
+            <ProductList />
           </Route>
-          <Route exact path="/product/:productId">
-            <ProductDetail products={_products} DeleteProduct={DeleteProduct} />
+          <Route exact path="/product/:productSlug">
+            <ProductDetail />
           </Route>
           <Route exact path="/">
             <HomePage />

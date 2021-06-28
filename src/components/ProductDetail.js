@@ -1,12 +1,18 @@
+// store class
+import productInstens from "../stores/productStore";
+
+import { observer } from "mobx-react";
+
 import { DetailWrapper } from "../styles";
 import DeleteButton from "./buttons/DeleteButton";
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 
-const ProductDetail = (props) => {
+const ProductDetail = () => {
   const productSlug = useParams().productSlug;
-  const product1 = props.products.find(
-    (product) => product.lug === productSlug
+  const product1 = productInstens.products.find(
+    (product) => product.slug === productSlug
   );
+  if (!product1) return <Redirect to="/product" />;
 
   return (
     <DetailWrapper>
@@ -14,13 +20,9 @@ const ProductDetail = (props) => {
       <p>{product1.name}</p>
       <p>{product1.discription}</p>
       <p>{product1.price}</p>
-      <DeleteButton
-        DeleteProduct={props.DeleteProduct}
-        productId={product1.id}
-        // setProduct={props.setProduct}
-      ></DeleteButton>
+      <DeleteButton productId={product1.id}></DeleteButton>
     </DetailWrapper>
   );
 };
 
-export default ProductDetail;
+export default observer(ProductDetail);
