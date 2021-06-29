@@ -6,7 +6,7 @@ export const UpdateBtn = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
-  const handleUpdate = () => openModal();
+  // const handleUpdate = () => openModal();
 
   return (
     <div>

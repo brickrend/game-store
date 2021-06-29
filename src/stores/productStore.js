@@ -1,9 +1,10 @@
-import products from "../products";
 import { makeAutoObservable } from "mobx";
 import slugify from "react-slugify";
+import axios from "axios";
 
 class ProductStore {
-  products = products;
+  products = [];
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -14,14 +15,19 @@ class ProductStore {
     this.products = updateProducts;
   };
 
+  fetchproduct = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/product");
+      this.products = response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   createProduct = (newProduct) => {
     newProduct.id = this.products.length + 1;
     newProduct.slug = slugify(newProduct.name);
     this.products.push(newProduct);
-    // this.products.name = newProduct.name;
-    // this.products.price = newProduct.price;
-    // this.products.discription = newProduct.discription;
-    // this.products.image = newProduct.image;
   };
 
   updateProduct = (updateProduct) => {
@@ -35,5 +41,6 @@ class ProductStore {
   };
 }
 const productInstens = new ProductStore();
+productInstens.fetchproduct();
 
 export default productInstens;
