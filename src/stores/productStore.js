@@ -8,11 +8,22 @@ class ProductStore {
   constructor() {
     makeAutoObservable(this);
   }
-  DeleteProduct = (productId) => {
-    const updateProducts = this.products.filter(
-      (game) => game.id !== productId
-    );
-    this.products = updateProducts;
+  DeleteProduct = async (productId) => {
+    // const updateProducts = this.products.filter(
+    //   (game) => game.id !== productId
+    // );
+    // this.products = updateProducts;
+
+    try {
+      await axios.delete(`http://localhost:8000/product/${productId}`);
+      const updateProducts = this.products.filter(
+        (game) => game.id !== productId
+      );
+      console.log(updateProducts);
+      this.products = updateProducts;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   fetchproduct = async () => {
