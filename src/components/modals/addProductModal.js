@@ -1,17 +1,19 @@
 import Modal from "react-modal";
-import AddBtn from "../buttons/AddBtn";
+import { AddBtnStyled } from "../../styles";
 import productInstens from "../../stores/productStore";
 
 // States
 import { useState } from "react";
 
 export const AddProductModal = (props) => {
-  const [product, setProduct] = useState({
-    name: "",
-    price: 0,
-    discription: "",
-    image: "",
-  });
+  const [product, setProduct] = useState(
+    props.oldProduct ?? {
+      name: "",
+      price: 0,
+      discription: "",
+      image: "",
+    }
+  );
 
   const handleChange = (e) => {
     setProduct({ ...product, [e.target.name]: e.target.value });
@@ -19,7 +21,8 @@ export const AddProductModal = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    productInstens.createProduct(product);
+    if (props.oldProduct) productInstens.updateProduct(product);
+    else productInstens.createProduct(product);
     props.closeModal();
   };
 
@@ -33,6 +36,7 @@ export const AddProductModal = (props) => {
               class="form-control"
               id="inputEmail4"
               name="name"
+              value={product.name}
               placeholder="Name"
               onChange={handleChange}
             ></input>
@@ -44,6 +48,7 @@ export const AddProductModal = (props) => {
               id="inputPassword4"
               name="price"
               placeholder="Price"
+              value={product.price}
               min="0"
               onChange={handleChange}
             ></input>
@@ -54,6 +59,7 @@ export const AddProductModal = (props) => {
               class="form-control"
               id="inputAddress"
               name="discription"
+              value={product.discription}
               placeholder="Discription"
               onChange={handleChange}
             ></input>
@@ -64,11 +70,14 @@ export const AddProductModal = (props) => {
               class="form-control"
               id="inputAddress2"
               name="image"
+              value={product.image}
               placeholder="Image URL"
               onChange={handleChange}
             ></input>
           </div>
-          <AddBtn type="submit"></AddBtn>
+          <AddBtnStyled type="submit">
+            {props.oldProduct ? "Update" : "Add"}
+          </AddBtnStyled>
         </form>
       </Modal>
     </div>

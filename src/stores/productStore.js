@@ -23,6 +23,16 @@ class ProductStore {
     // this.products.discription = newProduct.discription;
     // this.products.image = newProduct.image;
   };
+
+  updateProduct = (updateProduct) => {
+    const product = this.products.find(
+      (product) => product.id === updateProduct.id
+    );
+    product.name = updateProduct.name;
+    product.price = updateProduct.price;
+    product.image = updateProduct.image;
+    product.slug = slugify(product.name);
+  };
 }
 const productInstens = new ProductStore();
 

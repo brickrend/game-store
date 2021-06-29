@@ -10,12 +10,19 @@ body{
 `;
 
 export const AddBtnStyled = styled.button`
-  width: 60px;
+  width: 70px;
   height: 30px;
-  ${"" /* padding: 0.25em 1em; */}
-  ${"" /* border-radius: 5px; */}
-  ${"" /* background-color: black; */}
-  color: black;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+`;
+
+export const UpdatedBtnStyled = styled.button`
+  width: 70px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: ${(prop) => prop.theme.backgroundColor};
+  color: ${(prop) => prop.theme.mainColor};
 `;
 
 export const AddProductIcon = styled(TiPlusOutline)`
