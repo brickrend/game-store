@@ -22,7 +22,7 @@ class ProductStore {
       console.log(updateProducts);
       this.products = updateProducts;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -31,7 +31,7 @@ class ProductStore {
       const response = await axios.get("http://localhost:8000/product");
       this.products = response.data;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -43,11 +43,19 @@ class ProductStore {
       );
       this.products.push(response.data);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
-  updateProduct = (updateProduct) => {
+  updateProduct = async (updateProduct) => {
+    try {
+      await axios.put(
+        `http://localhost:8000/product/${updateProduct.id}`,
+        updateProduct
+      );
+    } catch (error) {
+      console.error(error);
+    }
     const product = this.products.find(
       (product) => product.id === updateProduct.id
     );
@@ -57,6 +65,7 @@ class ProductStore {
     product.slug = slugify(product.name);
   };
 }
+
 const productInstens = new ProductStore();
 productInstens.fetchproduct();
 
