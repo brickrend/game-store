@@ -1,21 +1,19 @@
 import { makeAutoObservable } from "mobx";
-import slugify from "react-slugify";
+import shopInstens from "./shopStore";
+
 import axios from "axios";
+import instance from "./instance";
 
 class ProductStore {
   products = [];
+  loading = true;
 
   constructor() {
     makeAutoObservable(this);
   }
   DeleteProduct = async (productId) => {
-    // const updateProducts = this.products.filter(
-    //   (game) => game.id !== productId
-    // );
-    // this.products = updateProducts;
-
     try {
-      await axios.delete(`http://localhost:8000/product/${productId}`);
+      await instance.delete(`/product/${productId}`);
       const updateProducts = this.products.filter(
         (game) => game.id !== productId
       );
@@ -28,20 +26,24 @@ class ProductStore {
 
   fetchproduct = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/product");
+      const response = await instance.get("/product");
       this.products = response.data;
+      this.loading = false;
     } catch (error) {
       console.error(error);
     }
   };
 
-  createProduct = async (newProduct) => {
+  createProduct = async (newProduct, shop) => {
     try {
-      const response = await axios.post(
-        "http://localhost:8000/product",
-        newProduct
+      const formData = new FormData();
+      for (const key in newProduct) formData.append(key, newProduct[key]);
+      const response = await instance.post(
+        `/shop/${shop.id}/product`,
+        formData
       );
       this.products.push(response.data);
+      shop.products.push({ id: response.data.id });
     } catch (error) {
       console.error(error);
     }
@@ -49,21 +51,23 @@ class ProductStore {
 
   updateProduct = async (updateProduct) => {
     try {
-      await axios.put(
-        `http://localhost:8000/product/${updateProduct.id}`,
-        updateProduct
+      const formData = new FormData();
+      for (const key in updateProduct) formData.append(key, updateProduct[key]);
+      const response = await instance.put(
+        `/product/${updateProduct.id}`,
+        formData
       );
+      const product = this.products.find(
+        (product) => product.id === response.data.id
+      );
+      for (const key in product) product[key] = response.data[key];
     } catch (error) {
       console.error(error);
     }
-    const product = this.products.find(
-      (product) => product.id === updateProduct.id
-    );
-    product.name = updateProduct.name;
-    product.price = updateProduct.price;
-    product.image = updateProduct.image;
-    product.slug = slugify(product.name);
   };
+
+  getProductById = (productId) =>
+    this.products.find((product) => product.id === productId);
 }
 
 const productInstens = new ProductStore();

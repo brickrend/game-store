@@ -1,9 +1,5 @@
 import "./App.css";
 
-// components
-import HomePage from "./components/Home";
-import ProductList from "./components/ProductList";
-import ProductDetail from "./components/ProductDetail";
 // import Logo from "./Logo.png";
 import NavBar from "./components/NavBar";
 
@@ -13,8 +9,11 @@ import { ThemeProvider } from "styled-components";
 
 // useState
 import { useState } from "react";
-import { Route, Switch } from "react-router";
-// import { Link } from "react-router-dom";
+import Routes from "./components/Routes";
+
+import { observer } from "mobx-react";
+import shopInstens from "./stores/shopStore";
+import productInstens from "./stores/productStore";
 
 const theme = {
   light: {
@@ -44,32 +43,21 @@ function App() {
     }
   };
 
-  // const DeleteProduct = (productId) => {
-  //   const updateProducts = _products.filter((game) => game.id !== productId);
-  //   setProducts(updateProducts);
-  // };
-
   return (
     <div>
       <ThemeProvider theme={theme[currentTheme]}>
         <NavBar currentTheme={currentTheme} changeTheme={changeTheme}>
           Games
         </NavBar>
-        <Switch>
-          <Route exact path="/product">
-            <ProductList />
-          </Route>
-          <Route exact path="/product/:productSlug">
-            <ProductDetail />
-          </Route>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
-        </Switch>
+        {shopInstens.loading || productInstens.loading ? (
+          <h1>Loading...</h1>
+        ) : (
+          <Routes />
+        )}
         <GlobalStyle />
       </ThemeProvider>
     </div>
   );
 }
 
-export default App;
+export default observer(App);

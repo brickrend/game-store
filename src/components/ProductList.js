@@ -10,11 +10,12 @@ import { ListWrapper, AddProductIcon } from "../styles";
 import ProductItem from "./ProductItem";
 import SearchBar from "./SearchBar";
 import AddProductModal from "./modals/addProductModal";
+import userInstance from "../stores/authStore";
 
 // react component
 import { useState } from "react";
 
-const ProductList = () => {
+const ProductList = ({ shop, product }) => {
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
@@ -26,10 +27,12 @@ const ProductList = () => {
     .map((game) => <ProductItem game={game} key={game.id} />);
   return (
     <div>
-      <AddProductIcon className="active" onClick={openModal} />
-      <AddProductModal isOpen={isOpen} closeModal={closeModal} />
+      {userInstance.user && (
+        <AddProductIcon className="active" onClick={openModal} />
+      )}
+      <AddProductModal isOpen={isOpen} closeModal={closeModal} shop={shop} />
       <SearchBar setQuery={setQuery} />
-      <ListWrapper>{gameList}</ListWrapper>;
+      <ListWrapper>{gameList}</ListWrapper>
     </div>
   );
 };

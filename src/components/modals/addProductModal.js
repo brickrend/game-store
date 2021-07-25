@@ -19,10 +19,14 @@ export const AddProductModal = (props) => {
     setProduct({ ...product, [e.target.name]: e.target.value });
   };
 
+  const handleImage = (e) => {
+    setProduct({ ...product, image: e.target.files[0] });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (props.oldProduct) productInstens.updateProduct(product);
-    else productInstens.createProduct(product);
+    else productInstens.createProduct(product, props.shop);
     props.closeModal();
   };
 
@@ -66,13 +70,12 @@ export const AddProductModal = (props) => {
           </div>
           <div class="col-12">
             <input
-              type="text"
+              type="file"
               class="form-control"
               id="inputAddress2"
               name="image"
-              value={product.image}
-              placeholder="Image URL"
-              onChange={handleChange}
+              placeholder="Image"
+              onChange={handleImage}
             ></input>
           </div>
           <AddBtnStyled type="submit">

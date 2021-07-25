@@ -25,6 +25,21 @@ export const UpdatedBtnStyled = styled.button`
   color: ${(prop) => prop.theme.mainColor};
 `;
 
+export const AuthBtnStyled = styled.button`
+  width: 70px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: black;
+  color: ${(prop) => prop.theme.mainColor};
+`;
+export const SignoutBtnStyled = styled.button`
+  width: 70px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: black;
+  color: ${(prop) => prop.theme.mainColor};
+`;
+
 export const AddProductIcon = styled(TiPlusOutline)`
   color: white;
   font-size: 30px;
@@ -81,6 +96,25 @@ export const ListWrapper = styled.div`
 `;
 
 export const ProductWrapper = styled.div`
+  margin: 5px;
+
+  img {
+    width: 300px;
+    height: 300px;
+  }
+  p {
+    margin: 0 80.1% 0 0;
+    ${"" /* background-color: black; */}
+    text-align: left;
+    color: ${(prop) => prop.theme.mainColor};
+
+    &.game-price {
+      color: ${(prop) => prop.theme.mainColor};
+    }
+  }
+`;
+
+export const ShopWrapper = styled.div`
   margin: 5px;
 
   img {
